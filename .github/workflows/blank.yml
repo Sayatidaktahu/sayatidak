@@ -1,0 +1,15 @@
+name: HaxRDP
+on: (push, workflow_dispatch)
+jobs: build:
+runs-on: windows-latest
+steps: - name: DOWNLOADING
+run: Invoke-WebRequest https://bin.equinox.io/c/4VnDzA7Laffb/ngrok-stable-windows- 64.zip -Out File ngrok.zip
+name: EXTRACT run: Expand-Archive ngrok.zip name: AUTENTIFIKASI
+run: Angrokingrok.exe authtoken 2KTokOhtr1RmQpgmRSstEzxMCIJ_2nhUPPKg8G1ckwhbmNjXa
+-name: ENABLE TS
+run: Set-ItemProperty -Path HKIM:\System\CurrentControlSet\Control\Terminal Server'-name "EDenyTSConnections" -Value 0 - run: Enable-BetFirewallRule -DisplayGroup "Remote Desktop"
+run: Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal
+Server\WinStations\BDP-Tep" -name "UserAuthentication" -Value 1
+run: Set-LocalUser Name "runneradmin" -Password (ConvertTo-SecureString
+AsPlainText "Pasword!" -Force) -name: DONE!
+run: Angrok\ngrok.exe top 3389
